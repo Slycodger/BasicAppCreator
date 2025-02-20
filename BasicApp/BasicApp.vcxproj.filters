@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="appFiles">
+      <UniqueIdentifier>{1a3aeb06-1a41-4a5e-ac8f-b1ff1731985d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appFiles\Shaders">
+      <UniqueIdentifier>{b2ad27d0-00c7-40fd-be9a-64e4e142711b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appFiles\Shaders\Texture">
+      <UniqueIdentifier>{08b3157c-8f83-4560-9767-5e930de6b567}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appFiles\Shaders\Text">
+      <UniqueIdentifier>{4574ec18-b305-4cbe-918a-5cfb773bcd5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appFiles\Scripts Files">
+      <UniqueIdentifier>{bee72af7-d777-41b2-81d8-88517fc71aad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appFiles\include files">
+      <UniqueIdentifier>{1f6d60c9-afd4-42b6-92e3-070581904096}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appFiles\Dependencies">
+      <UniqueIdentifier>{c38d67f4-8e16-4cc0-8cae-d99759f3df3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appFiles\Shaders\CubeMap">
+      <UniqueIdentifier>{3b995eb6-154f-4c7a-abd5-20a1c13caa35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appFiles\Shaders\Lighting">
+      <UniqueIdentifier>{1c97a82b-5eb8-4e9d-bf6c-5c5214aae6e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appFiles\Shaders\NoLighting">
+      <UniqueIdentifier>{500c5f2e-354e-44a3-aa4f-4aeaee29d769}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appFiles\Shaders\UI">
+      <UniqueIdentifier>{ebb98463-6e9b-4f6c-9b0e-a71a81af6d84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appFiles\Shaders\postProcessing">
+      <UniqueIdentifier>{225c1b42-7324-4205-aa04-90abc49821ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appFiles\Fonts">
+      <UniqueIdentifier>{74fed0c4-6eb0-4b1b-8976-c24431bdd6db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appFiles\Shaders\EquirectangularCubemap">
+      <UniqueIdentifier>{67fe9866-6ae3-4b5c-af75-f111d712aa77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appFiles\Shaders\Min">
+      <UniqueIdentifier>{dcadfe58-f9f2-4bcc-a5d8-8ba36015a821}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appFiles\Shaders\Prefilter">
+      <UniqueIdentifier>{31e28d8f-610a-4ac7-9847-8016a7052091}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appFiles\Shaders\Irradiance">
+      <UniqueIdentifier>{80f36329-6b5c-44e1-87ea-1d1df9673f89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appFiles\Shaders\BRDF">
+      <UniqueIdentifier>{300e4df8-ff99-4444-973a-05dffe3e90d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appFiles\TypeFunctions">
+      <UniqueIdentifier>{ef3a6de5-2ea3-4543-947b-f9a9978647cf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\flowControl.cpp">
+      <Filter>appFiles\Scripts Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\globalScripts.cpp">
+      <Filter>appFiles\Scripts Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\input.cpp">
+      <Filter>appFiles\Scripts Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intializeShader.cpp">
+      <Filter>appFiles\Scripts Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\uniqueTypes.cpp">
+      <Filter>appFiles\Scripts Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\programControl.cpp">
+      <Filter>appFiles\Scripts Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\progUI.cpp">
+      <Filter>appFiles\Scripts Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sound.cpp">
+      <Filter>appFiles\Scripts Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\text.cpp">
+      <Filter>appFiles\Scripts Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\textureLoading.cpp">
+      <Filter>appFiles\Scripts Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Dependencies\glad\src\glad.c">
+      <Filter>appFiles\Dependencies</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\modelLoading.cpp">
+      <Filter>appFiles\Scripts Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\shapes.cpp">
+      <Filter>appFiles\Scripts Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\progBoiler.cpp">
+      <Filter>appFiles\Scripts Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\material.cpp">
+      <Filter>appFiles\Scripts Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects.cpp">
+      <Filter>appFiles\Scripts Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphicsSettings.cpp">
+      <Filter>appFiles\Scripts Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\VarHandling.cpp">
+      <Filter>appFiles\Scripts Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\uniqueTypeFunctions.cpp">
+      <Filter>appFiles\TypeFunctions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\materialFunctions.cpp">
+      <Filter>appFiles\TypeFunctions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\transformFunctions.cpp">
+      <Filter>appFiles\TypeFunctions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ptrVectorTypeFunctions.cpp">
+      <Filter>appFiles\TypeFunctions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objectTypeFunctions.cpp">
+      <Filter>appFiles\TypeFunctions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\meshTypeFunctions.cpp">
+      <Filter>appFiles\TypeFunctions</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sfml-system-d-2.dll">
+      <Filter>appFiles</Filter>
+    </None>
+    <None Include="LICENSE">
+      <Filter>appFiles</Filter>
+    </None>
+    <None Include="openal32.dll">
+      <Filter>appFiles</Filter>
+    </None>
+    <None Include="sfml-audio-2.dll">
+      <Filter>appFiles</Filter>
+    </None>
+    <None Include="sfml-audio-d-2.dll">
+      <Filter>appFiles</Filter>
+    </None>
+    <None Include="sfml-system-2.dll">
+      <Filter>appFiles</Filter>
+    </None>
+    <None Include="assimp-vc143-mt.dll">
+      <Filter>appFiles</Filter>
+    </None>
+    <None Include="freetype.dll">
+      <Filter>appFiles</Filter>
+    </None>
+    <None Include="shaders\CubeMap\CubeMapShader.frag">
+      <Filter>appFiles\Shaders\CubeMap</Filter>
+    </None>
+    <None Include="shaders\CubeMap\CubeMapShader.vert">
+      <Filter>appFiles\Shaders\CubeMap</Filter>
+    </None>
+    <None Include="shaders\EquirectangularCubemap\EquirectangularCubemapShader.vert">
+      <Filter>appFiles\Shaders\EquirectangularCubemap</Filter>
+    </None>
+    <None Include="shaders\EquirectangularCubemap\EquirectangularCubemapShader.frag">
+      <Filter>appFiles\Shaders\EquirectangularCubemap</Filter>
+    </None>
+    <None Include="shaders\Lighting\LightingShader.vert">
+      <Filter>appFiles\Shaders\Lighting</Filter>
+    </None>
+    <None Include="shaders\Lighting\LightingShader.frag">
+      <Filter>appFiles\Shaders\Lighting</Filter>
+    </None>
+    <None Include="shaders\Min\MinShader.vert">
+      <Filter>appFiles\Shaders\Min</Filter>
+    </None>
+    <None Include="shaders\Min\MinShader.frag">
+      <Filter>appFiles\Shaders\Min</Filter>
+    </None>
+    <None Include="shaders\NoLighting\NoLightingShader.frag">
+      <Filter>appFiles\Shaders\NoLighting</Filter>
+    </None>
+    <None Include="shaders\NoLighting\NoLightingShader.vert">
+      <Filter>appFiles\Shaders\NoLighting</Filter>
+    </None>
+    <None Include="shaders\UI\UIShader.vert">
+      <Filter>appFiles\Shaders\UI</Filter>
+    </None>
+    <None Include="shaders\UI\UIShader.frag">
+      <Filter>appFiles\Shaders\UI</Filter>
+    </None>
+    <None Include="shaders\Texture\TVertexShader.vert">
+      <Filter>appFiles\Shaders\Texture</Filter>
+    </None>
+    <None Include="shaders\Texture\TFragmentShader.frag">
+      <Filter>appFiles\Shaders\Texture</Filter>
+    </None>
+    <None Include="shaders\Text\TextVertexShader.vert">
+      <Filter>appFiles\Shaders\Text</Filter>
+    </None>
+    <None Include="shaders\Text\TextFragmentShader.frag">
+      <Filter>appFiles\Shaders\Text</Filter>
+    </None>
+    <None Include="shaders\PostProcessing\postProcessingShader.vert">
+      <Filter>appFiles\Shaders\postProcessing</Filter>
+    </None>
+    <None Include="shaders\PostProcessing\postProcessingShader.frag">
+      <Filter>appFiles\Shaders\postProcessing</Filter>
+    </None>
+    <None Include="shaders\Irradiance\IrradianceShader.frag">
+      <Filter>appFiles\Shaders\Irradiance</Filter>
+    </None>
+    <None Include="shaders\Irradiance\IrradianceShader.vert">
+      <Filter>appFiles\Shaders\Irradiance</Filter>
+    </None>
+    <None Include="shaders\Prefilter\PrefilterShader.vert">
+      <Filter>appFiles\Shaders\Prefilter</Filter>
+    </None>
+    <None Include="shaders\Prefilter\PrefilterShader.frag">
+      <Filter>appFiles\Shaders\Prefilter</Filter>
+    </None>
+    <None Include="shaders\BRDF\BRDFShader.frag">
+      <Filter>appFiles\Shaders\BRDF</Filter>
+    </None>
+    <None Include="shaders\BRDF\BRDFShader.vert">
+      <Filter>appFiles\Shaders\BRDF</Filter>
+    </None>
+    <None Include="mdDebug.bat" />
+    <None Include="mfDebug.bat" />
+    <None Include="mdRelease.bat" />
+    <None Include="mfRelease.bat" />
+    <None Include="mfsDebug.bat" />
+    <None Include="mfsRelease.bat" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\camera.h">
+      <Filter>appFiles\include files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\constants.h">
+      <Filter>appFiles\include files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\flowControl.h">
+      <Filter>appFiles\include files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\globalScripts.h">
+      <Filter>appFiles\include files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\globalVars.h">
+      <Filter>appFiles\include files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\input.h">
+      <Filter>appFiles\include files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\intializeShader.h">
+      <Filter>appFiles\include files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mathConstants.h">
+      <Filter>appFiles\include files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects.h">
+      <Filter>appFiles\include files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objScripts.h">
+      <Filter>appFiles\include files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\openGL.h">
+      <Filter>appFiles\include files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\programControl.h">
+      <Filter>appFiles\include files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\progUI.h">
+      <Filter>appFiles\include files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\shapes.h">
+      <Filter>appFiles\include files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\soundLoading.h">
+      <Filter>appFiles\include files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\text.h">
+      <Filter>appFiles\include files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\textureLoading.h">
+      <Filter>appFiles\include files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\typeDefs.h">
+      <Filter>appFiles\include files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vector.h">
+      <Filter>appFiles\include files</Filter>
+    </ClInclude>
+    <ClInclude Include="Dependencies\freeTypeInclude\ft2build.h">
+      <Filter>appFiles\Dependencies</Filter>
+    </ClInclude>
+    <ClInclude Include="src\modelLoading.h">
+      <Filter>appFiles\include files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\progBoiler.h">
+      <Filter>appFiles\include files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\material.h">
+      <Filter>appFiles\include files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\light.h">
+      <Filter>appFiles\include files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\transform.h">
+      <Filter>appFiles\include files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\unique.h">
+      <Filter>appFiles\include files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\uniqueTypes.h">
+      <Filter>appFiles\include files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphicsSettings.h">
+      <Filter>appFiles\include files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\basicApp.h">
+      <Filter>appFiles\TypeFunctions</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="fonts\Arial.ttf">
+      <Filter>appFiles\Fonts</Filter>
+    </Font>
+    <Font Include="fonts\CascadiaCode.ttf">
+      <Filter>appFiles\Fonts</Filter>
+    </Font>
+    <Font Include="fonts\CascadiaCode-ExtraLight.ttf">
+      <Filter>appFiles\Fonts</Filter>
+    </Font>
+    <Font Include="fonts\CascadiaCode-Light.ttf">
+      <Filter>appFiles\Fonts</Filter>
+    </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="FTL.TXT">
+      <Filter>appFiles</Filter>
+    </Text>
+  </ItemGroup>
+</Project>
