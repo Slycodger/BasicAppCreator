@@ -25,7 +25,7 @@ static glm::mat4 _transform(1);
 
 
 //--------------------------------------------------
-UniqueType* basicApp_createUniqueType(Unique::Types type) {
+void* basicApp_createUniqueType(Unique::Types type) {
   return createUniqueType(type);
 }
 

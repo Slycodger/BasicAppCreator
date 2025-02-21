@@ -8,7 +8,7 @@
 
   public Vec3 position {
     get => basicApp_uniqueTypeTransformPosition(buffer);
-    set => basicApp_setObjectTransformPosition(buffer, value);
+    set => basicApp_setUniqueTypeTransformPosition(buffer, value);
   }
 
   public Vec3 scale {
@@ -33,7 +33,7 @@
 
   public Vec3 relativePosition {
     get => basicApp_uniqueTypeRelativeTransformPosition(buffer);
-    set => basicApp_setObjectRelativeTransformPosition(buffer, value);
+    set => basicApp_setUniqueTypeRelativeTransformPosition(buffer, value);
   }
 
   public Vec3 relativeScale {

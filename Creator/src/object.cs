@@ -6,6 +6,16 @@
 
 
 
+  //(IntPtr)dependent
+  //--------------------------------------------------
+  public Object dependent {
+    get => new Object(basicApp_objectDependent(buffer));
+    set => basicApp_setObjectDependent(buffer, value.buffer);
+  }
+  //--------------------------------------------------
+
+
+
   //(Material)material
   //--------------------------------------------------
   public Material material {
@@ -31,7 +41,6 @@
   //--------------------------------------------------
   public Mesh mesh {
     get => new Mesh(basicApp_objectMesh(buffer));
-    set => basicApp_setObjectMesh(buffer, value.buffer);
   }
   //--------------------------------------------------
 

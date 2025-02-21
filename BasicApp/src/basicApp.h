@@ -1,6 +1,5 @@
 #pragma once
 
-
 //programControl
 #ifdef _PROGRAM_CONTROL
 
@@ -60,7 +59,7 @@ extern "C" {
 extern "C" {
 #endif
 
-  __declspec(dllexport) UniqueType*   basicApp_createUniqueType(Unique::Types type);
+  __declspec(dllexport) void*   basicApp_createUniqueType(Unique::Types type);
 
 
 #ifdef __cplusplus
@@ -109,6 +108,53 @@ extern "C" {
   __declspec(dllexport) bool          basicApp_getNumlock();
   __declspec(dllexport) bool          basicApp_getShift();
   __declspec(dllexport) void          basicApp_keyLatchKeys();
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+
+
+
+//objects
+#ifdef _OBJECTS
+
+#include "transform.h"
+#include "objects.h"
+#include <string>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+  __declspec(dllexport) bool basicApp_setObjectMesh(UniqueType* tType, const char* mesh);
+  __declspec(dllexport) bool basicApp_loadMesh(MeshData* tType, const char* mesh);
+  __declspec(dllexport) bool basicApp_unloadMesh(const char* mesh);
+  __declspec(dllexport) void basicApp_updateMeshBuffersWithNew(MeshData* mData, float* vertices, uint64_t vertSize, uint64_t triCount);
+  __declspec(dllexport) void basicApp_updateMeshBuffers(MeshData* mData);
+  __declspec(dllexport) void* basicApp_createMeshBuffers(float* vertices, int64_t vertSize, uint triCount);
+  __declspec(dllexport) void basicApp_deleteMeshData(MeshData* mData);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+
+
+
+#ifdef _TEXTURE_LOADING
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+  __declspec(dllexport) void basicApp_removeTexture(const char* name);
+  __declspec(dllexport) void* basicApp_getTexture(const char* name);
+  __declspec(dllexport) void* basicApp_loadEnvironmentTexture(const char* name, bool abs, bool flip);
+  __declspec(dllexport) void* basicApp_loadCubeMapTexture(const char* name, const char* textures[6], int texType, bool abs, bool flip, bool gCorrection);
+  __declspec(dllexport) void* basicApp_loadTexture(const char* name, int texType, bool abs, bool flip, bool gCorrection);
 
 #ifdef __cplusplus
 }

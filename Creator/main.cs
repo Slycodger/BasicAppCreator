@@ -27,8 +27,14 @@
     basicApp_createUniqueType(Unique.CAMERA);
     basicApp_setMouseHide(true);
 
-    PtrVector cubeChildren = cube.children;
 
+    Array<float> meshVertices = new Array<float>(33, 4);
+    MeshData mData = new MeshData(meshVertices, 3);
+    Mesh.basicApp_loadMesh(mData.meshData, "myTriangle");
+
+    Texture albedo = new Texture(Texture.basicApp_loadTexture("cube_diff.png", (int)TextureType.ALBEDO, false, false, false));
+    Console.WriteLine(albedo.width);
+    cube2.srcMaterial.albedoTexture = albedo;
 
 
     while (!basicApp_shouldClose()) {
@@ -46,10 +52,18 @@
       if (basicApp_keyPressed(KEY_Q))
         basicApp_swapMouseHide();
 
-
-
       if (basicApp_keyPressed(KEY_F))
-        cube.transform = newTransform;
+        Console.WriteLine(basicApp_setObjectMesh(cube1.buffer, "myTriangle"));
+
+      if (basicApp_keyPressed(KEY_E))
+        meshVertices.CopyFrom(new float[33] {
+          -0.5f, -0.5f, 0.0f,       0, 0, 1,        0, 0, 0,        0, 0,
+          0.5f, -0.5f, 0.0f,        0, 0, 1,        0, 0, 0,        1, 0,
+          0.0f, 0.5f, 0.0f,         0, 0, 1,        0, 0, 0,        1, 0
+        });
+
+      if (basicApp_keyPressed(KEY_R))
+        mData.Update();
 
 
 
@@ -59,22 +73,21 @@
 
 
       if (basicApp_keyPressed(KEY_H))
-        if (cubeChildren.length > 1)
-          cubeChildren.Remove(1);
-        else if (cubeChildren.length > 0)
+        if (cube.children.length > 1)
+          cube2.parent = new(0);
+        else if (cube.children.length > 0)
           cube1.parent = new(0);
         else {
           cube1.parent = cube;
           cube2.parent = cube;
         }
 
-
       if (basicApp_keyHeld(KEY_N))
-        if (cubeChildren.length > 1) {
-          UniqueType child = new(cubeChildren[1]);
+        if (cube.children.length > 1) {
+          UniqueType child = new(cube.children[1]);
           child.relativePosition = new Vec3(child.relativePosition.x + 0.5f * basicApp_deltaTime(), 0, child.relativePosition.z);
-        } else if (cubeChildren.length > 0) {
-          UniqueType child = new(cubeChildren[0]);
+        } else if (cube.children.length > 0) {
+          UniqueType child = new(cube.children[0]);
           child.relativePosition = new Vec3(child.relativePosition.x - 0.5f * basicApp_deltaTime(), 0, child.relativePosition.z);
         }
 

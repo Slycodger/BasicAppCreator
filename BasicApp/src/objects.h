@@ -39,6 +39,13 @@ public:
 };
 
 
+class MeshData {
+public:
+  uint* VBO;
+  uint* triCount;
+  Mesh* mesh;
+};
+
 
 void drawObj(UniqueType* tType);
 
@@ -122,6 +129,9 @@ public:
   void setDependent(Object* obj) {
     removeDependent();
 
+    if (!obj)
+      return;
+
     dependent = obj;
     obj->dependencies.push_back(this);
   }
@@ -129,7 +139,9 @@ public:
   void removeDependent() {
     if (dependent == nullptr)
       return;
-    dependent->dependencies.erase(dependent->dependencies.begin() + dependent->getDependencyIndex(this));
+    int index = dependent->getChildIndex(this);
+    if (index >= 0)
+      dependent->dependencies.erase(dependent->dependencies.begin() + dependent->getDependencyIndex(this));
     dependent = nullptr;
   }
 
@@ -170,6 +182,7 @@ void drawSkyMap();
 bool unloadMesh(std::string name);
 bool loadMesh(Mesh* mesh, std::string name);
 void deleteObjMeshes();
+void updateMeshBuffers(uint& VBO, const float* vertices, size_t vertSize);
 void createMeshBuffers(uint& VBO, float* vertices, size_t vertSize);
 void createMeshBuffers(uint& VBO, const float* vertices, size_t vertSize);
 bool setObjMesh(UniqueType* tType, std::string mesh);

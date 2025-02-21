@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices;
-
-public partial class Mesh : BufferType {
+﻿public partial class Mesh : BufferType {
   //(Array<Vertex>)vertices
   //--------------------------------------------------
   public Array<Vertex> vertices { get; private set; }
@@ -20,6 +18,7 @@ public partial class Mesh : BufferType {
 
 
   public Mesh(IntPtr ptr) : base(ptr) {
-    vertices = new Array<Vertex>(basicApp_meshVerticeBuffer(ptr), triCount);
+    //SIZEOF Vertex
+    vertices = new Array<Vertex>(basicApp_meshVerticeBuffer(buffer), basicApp_meshVerticeLength(buffer), 44);
   }
 }

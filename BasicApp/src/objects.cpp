@@ -1,7 +1,11 @@
+#define _OBJECTS
 #include "objects.h"
 #include "uniqueTypes.h"
 #include "light.h"
 #include "graphicsSettings.h"
+#include "basicApp.h"
+
+
 unsigned int whiteSinglePixelTexture;
 unsigned int graySinglePixelTexture;
 unsigned int blackSinglePixelTexture;
@@ -58,6 +62,91 @@ int DirectionalLight::directionalLightCount = 0;
 
 SpotLight* SpotLight::lights[_MAX_UNIQUE_TYPES] = {};
 int SpotLight::spotLightCount = 0;
+
+
+
+
+//--------------------------------------------------
+bool basicApp_setObjectMesh(UniqueType* ptr, const char* mesh) {
+  return setObjMesh(ptr, mesh);
+}
+
+
+
+//--------------------------------------------------
+bool basicApp_loadMesh(MeshData* mesh, const char* name) {
+  return loadMesh(mesh->mesh, name);
+}
+
+
+
+//--------------------------------------------------
+bool basicApp_unloadMesh(const char* name) {
+  return unloadMesh(name);
+}
+
+
+
+//--------------------------------------------------
+void basicApp_updateMeshBuffersWithNew(MeshData* mData, float* vertices, uint64_t vertSize, uint64_t triCount) {
+  if (!mData)
+    return;
+
+  mData->mesh->vertices = { reinterpret_cast<Vertex*>(vertices), vertSize / sizeof(float) };
+  *mData->triCount = triCount;
+
+  glBindBuffer(GL_ARRAY_BUFFER, *mData->VBO);
+  glBufferData(GL_ARRAY_BUFFER, vertSize, vertices, GL_STATIC_DRAW);
+
+  glBindBuffer(GL_ARRAY_BUFFER, 0);
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+}
+
+
+
+//--------------------------------------------------
+void basicApp_updateMeshBuffers(MeshData* mData) {
+  if (!mData)
+    return;
+
+  glBindBuffer(GL_ARRAY_BUFFER, *mData->VBO);
+  glBufferData(GL_ARRAY_BUFFER, mData->mesh->vertices.size() * sizeof(Vertex), mData->mesh->vertices.data(), GL_STATIC_DRAW);
+
+  glBindBuffer(GL_ARRAY_BUFFER, 0);
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+}
+
+
+
+//--------------------------------------------------
+void* basicApp_createMeshBuffers(float* vertices, int64_t vertSize, uint triCount) {
+  MeshData* mData = new MeshData();
+  mData->VBO = new uint(0);
+  mData->triCount = new uint(triCount);
+  mData->mesh = new Mesh({ reinterpret_cast<Vertex*>(vertices), vertSize / sizeof(float)}, mData->VBO, mData->triCount);
+
+  glCreateBuffers(1, mData->VBO);
+  glBindBuffer(GL_ARRAY_BUFFER, *mData->VBO);
+  glBufferData(GL_ARRAY_BUFFER, vertSize, vertices, GL_STATIC_DRAW);
+
+  glBindBuffer(GL_ARRAY_BUFFER, 0);
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+  return mData;
+}
+
+
+
+//--------------------------------------------------
+void basicApp_deleteMeshData(MeshData* mData) {
+  delete(mData->VBO);
+  delete(mData->triCount);
+  delete(mData);
+}
+
+
+
+
 
 
 namespace nObjects {
@@ -224,6 +313,17 @@ void createMeshBuffers(uint& VBO, float* vertices, size_t vertSize) {
   glBindBuffer(GL_ARRAY_BUFFER, 0);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
+
+
+//Exact same as createMeshBuffers, except doesn't generate VBO
+void updateMeshBuffers(uint& VBO, const float* vertices, size_t vertSize) {
+  glBindBuffer(GL_ARRAY_BUFFER, VBO);
+  glBufferData(GL_ARRAY_BUFFER, vertSize, vertices, GL_STATIC_DRAW);
+
+  glBindBuffer(GL_ARRAY_BUFFER, 0);
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+}
+
 
 //Creates the buffers for an object
 void createMeshBuffers(uint& VBO, const float* vertices, size_t vertSize) {

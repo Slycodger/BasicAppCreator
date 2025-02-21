@@ -37,13 +37,10 @@ public:
     return -1;
   }
   void setParent(UniqueType* nParent) {
-    if (parent != nullptr)
-      parent->children.erase(parent->children.begin() + parent->getChildIndex(this));
+    removeParent();
 
-    if (!nParent) {
-      parent = nullptr;
+    if (!nParent)
       return;
-    }
 
     nParent->children.push_back(this);
     parent = nParent;
@@ -71,7 +68,9 @@ public:
   void removeParent() {
     if (parent == nullptr)
       return;
-    parent->children.erase(parent->children.begin() + parent->getChildIndex(this));
+    int index = parent->getChildIndex(this);
+    if (index >= 0)
+      parent->children.erase(parent->children.begin() + index);
 
 
     parent = nullptr;

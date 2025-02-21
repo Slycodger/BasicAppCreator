@@ -1,5 +1,53 @@
 #define STB_IMAGE_IMPLEMENTATION
+#define _TEXTURE_LOADING
 #include "textureLoading.h"
+#include "basicApp.h"
+
+
+//--------------------------------------------------
+void basicApp_removeTexture(const char* name) {
+  removeTexture(name);
+}
+
+
+
+//--------------------------------------------------
+void* basicApp_getTexture(const char* name) {
+  return getTexture(name);
+}
+
+
+
+//--------------------------------------------------
+void* basicApp_loadEnvironmentTexture(const char* name, bool abs, bool flip) {
+  Texture* retTex = nullptr;
+  loadEnvironmentTexture(name, &retTex, abs, flip);
+  return retTex;
+}
+
+
+
+//--------------------------------------------------
+void* basicApp_loadCubeMapTexture(const char* name, const char* textures[6], int texType, bool abs, bool flip, bool gCorrection) {
+  Texture* retTex = nullptr;
+  loadCubeMapTexture(name, { textures[0], textures[1], textures[2], textures[3], textures[4], textures[5] }, &retTex, Texture::type(texType), abs, flip, gCorrection);
+  return retTex;
+}
+
+
+
+//--------------------------------------------------
+void* basicApp_loadTexture(const char* name, int texType, bool abs, bool flip, bool gCorrection) {
+  Texture* retTex = nullptr;
+  loadTexture(name, &retTex, Texture::type(texType), abs, flip, gCorrection);
+  return retTex;
+}
+
+
+
+
+
+
 
 std::map<std::string, Texture*> globalTextures;
 

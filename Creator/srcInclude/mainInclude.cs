@@ -96,6 +96,13 @@ public partial class Program {
 
 
 
+  //objects
+  //--------------------------------------------------
+  [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+  static extern bool basicApp_setObjectMesh(IntPtr ptr, string mesh);
+  //--------------------------------------------------
+
+
 
 
   //Keys
@@ -105,4 +112,6 @@ public partial class Program {
   const int KEY_F = 70;
   const int KEY_N = 78;
   const int KEY_H = 72;
+  const int KEY_E = 69;
+  const int KEY_R = 82;
 }

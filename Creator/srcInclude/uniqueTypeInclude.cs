@@ -27,7 +27,7 @@ public partial class UniqueType {
   public static extern void basicApp_setUniqueTypeTransform(IntPtr ptr, SceneTransform val);
 
   [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl)]
-  public static extern void basicApp_setObjectTransformPosition(IntPtr ptr, Vec3 val);
+  public static extern void basicApp_setUniqueTypeTransformPosition(IntPtr ptr, Vec3 val);
   [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl)]
   public static extern Vec3 basicApp_uniqueTypeTransformPosition(IntPtr ptr);
 
@@ -53,7 +53,7 @@ public partial class UniqueType {
   public static extern void basicApp_setUniqueTypeRelativeTransform(IntPtr ptr, SceneTransform val);
 
   [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl)]
-  public static extern void basicApp_setObjectRelativeTransformPosition(IntPtr ptr, Vec3 val);
+  public static extern void basicApp_setUniqueTypeRelativeTransformPosition(IntPtr ptr, Vec3 val);
   [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl)]
   public static extern Vec3 basicApp_uniqueTypeRelativeTransformPosition(IntPtr ptr);
 

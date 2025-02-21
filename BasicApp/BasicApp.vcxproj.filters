@@ -121,9 +121,6 @@
     <ClCompile Include="src\materialFunctions.cpp">
       <Filter>appFiles\TypeFunctions</Filter>
     </ClCompile>
-    <ClCompile Include="src\transformFunctions.cpp">
-      <Filter>appFiles\TypeFunctions</Filter>
-    </ClCompile>
     <ClCompile Include="src\ptrVectorTypeFunctions.cpp">
       <Filter>appFiles\TypeFunctions</Filter>
     </ClCompile>
@@ -131,6 +128,12 @@
       <Filter>appFiles\TypeFunctions</Filter>
     </ClCompile>
     <ClCompile Include="src\meshTypeFunctions.cpp">
+      <Filter>appFiles\TypeFunctions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ptrArrayFunctions.cpp">
+      <Filter>appFiles\TypeFunctions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\textureTypeFunctions.cpp">
       <Filter>appFiles\TypeFunctions</Filter>
     </ClCompile>
   </ItemGroup>

@@ -4,6 +4,8 @@ public partial class Object {
   [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl)]
   static extern IntPtr basicApp_objectDependent(IntPtr ptr);
   [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl)]
+  static extern void basicApp_setObjectDependent(IntPtr obj, IntPtr val);
+  [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl)]
   static extern IntPtr basicApp_objectDependencies(IntPtr ptr);
 
   [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -17,8 +19,6 @@ public partial class Object {
 
   [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl)]
   static extern IntPtr basicApp_objectMesh(IntPtr ptr);
-  [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl)]
-  static extern void basicApp_setObjectMesh(IntPtr ptr, IntPtr val);
 
   [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl)]
   static extern string basicApp_objectType(IntPtr ptr);

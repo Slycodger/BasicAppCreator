@@ -1,4 +1,4 @@
-﻿public partial class Array<T> : BufferType where T : struct {
+﻿public class Array<T> : BufferType where T : struct {
   //(Int64)length
   //--------------------------------------------------
   public Int64 length { get; private set; }
@@ -6,6 +6,25 @@
 
 
 
+  //
+  //--------------------------------------------------
+  public Int64 size { get; private set; }
+
+
+  //(bool)inHouse
+  //--------------------------------------------------
+  private bool inHouse = false;
+  //--------------------------------------------------
+
+
+
+
+  //--------------------------------------------------
+  public void CopyFrom(T[] arr) {
+    Int64 smallest = length <= arr.Length ? length : arr.Length;
+    for (int i = 0; i < smallest; i++)
+      this[i] = arr[i];
+  }
 
 
   //--------------------------------------------------
@@ -29,7 +48,24 @@
 
 
 
-  public Array(IntPtr ptr, Int64 l) : base(ptr) {
+  public Array(IntPtr ptr, Int64 l, Int64 s) : base(ptr) {
     length = l;
+    size = s;
+    inHouse = false;
+  }
+
+  public Array(Int64 l, Int64 s) : base(ArrayData.basicApp_createArray(132)) {
+    length = l;
+    size = s;
+    inHouse = true;
+  }
+
+
+
+
+
+  ~Array() {
+    if (inHouse)
+      ArrayData.basicApp_deleteArray(buffer);
   }
 }

@@ -1,30 +1,29 @@
-#include "objects.h"
+#include "textureLoading.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
   //--------------------------------------------------
-  __declspec(dllexport) void* basicApp_meshVerticeBuffer(Mesh* ptr) {
+  __declspec(dllexport) int basicApp_textureWidth(Texture* ptr) {
     if (!ptr)
       return 0;
-    return ptr->vertices.data();
+    return ptr->width;
   }
 
   //--------------------------------------------------
-  __declspec(dllexport) int64_t basicApp_meshVerticeLength(Mesh* ptr) {
+  __declspec(dllexport) int basicApp_textureHeight(Texture* ptr) {
     if (!ptr)
       return 0;
-    return ptr->vertices.size();
+    return ptr->height;
   }
 
   //--------------------------------------------------
-  __declspec(dllexport) uint basicApp_meshTriCount(Mesh* ptr) {
+  __declspec(dllexport) int basicApp_textureType(Texture* ptr) {
     if (!ptr)
       return 0;
-    return *ptr->triCount;
+    return ptr->texType;
   }
-
 #ifdef __cplusplus
 }
 #endif
