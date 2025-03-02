@@ -12,8 +12,8 @@
 * a type should have
 * Each type then should override, mostly will be copy paste with changed types
 * That's fine since it should work
-* 
-* 
+*
+*
 * 12:12AM
 * 1/17/2025
 */
@@ -26,8 +26,8 @@
 * Make drawing happen in all objects 'update' function
 * Because of how drawing is currently, nothing should change heavily
 * Move matrix calculations into gpu to try and speed stuff up
-* 
-* 
+*
+*
 * 3:35PM
 * 1/17/2025
 */
@@ -39,8 +39,8 @@
 * Make UI show to FBO and drawn over
 * Make wrapper class to allow lights to use unique type stuff
 * optimize I guess
-* 
-* 
+*
+*
 * 3:55PM
 * 1/18/2025
 */
@@ -49,8 +49,8 @@
 
 /*
 * Finish light to unique type stuff
-* 
-* 
+*
+*
 * 2:21PM
 * 1/20/2025
 */
@@ -59,8 +59,8 @@
 
 /*
 * I think the normals are backwards for lighting, fix it
-* 
-* 
+*
+*
 * 8:25PM
 * 1/21/2025
 */
@@ -73,8 +73,8 @@
 * It will create more overhead, no way around though
 * Add directionalLights to UniqueTypes
 * Test them
-* 
-* 
+*
+*
 * 3:46PM
 * 1/24/2025
 */
@@ -84,8 +84,8 @@
 /*
 * Data is being passed wrong for spot lights
 * Fix it
-* 
-* 
+*
+*
 * 1:17AM
 * 1/25/2025
 */
@@ -95,8 +95,8 @@
 /*
 * Make model loading be able to get material values without textures
 * Finish up HDR once that is done
-* 
-* 
+*
+*
 * 1:29AM
 * 1/25/2025
 */
@@ -209,7 +209,7 @@ void basicApp_end() {
 //--------------------------------------------------
 void basicApp_setVsync(bool tf) {
   if (tf)
-   glfwSwapInterval(1);
+    glfwSwapInterval(1);
   else
     glfwSwapInterval(0);
   _vsync = tf;
@@ -287,70 +287,68 @@ void basicApp_deleteObjArray(void* ptr) {
 
 //DO NOT USE
 int run() {
-				if (!glfwInit()) {
-								std::cout << "Failed to load glfw\n";
-								return 0;
-				}
+  if (!glfwInit()) {
+    std::cout << "Failed to load glfw\n";
+    return 0;
+  }
 
-				mainWindow = glfwCreateWindow(_screenWidth, _screenHeight, _windowTitle.c_str(), nullptr, nullptr);
-				if (!mainWindow) {
-								std::cout << "Failed to load window\n";
-								return 0;
-				}
-				glfwMakeContextCurrent(mainWindow);
-				glfwSetWindowSizeCallback(mainWindow, windowScaleCallback);
-				glfwSetCursorPosCallback(mainWindow, mouseMoveCallback);
-				glfwSetMouseButtonCallback(mainWindow, mouseClickCallback);
-				glfwSetKeyCallback(mainWindow, keyPressCallback);
-				glfwSetScrollCallback(mainWindow, mouseScrollCallback);
-				glfwSetWindowPosCallback(mainWindow, windowMoveCallback);
-
-
-				glfwSetInputMode(mainWindow, GLFW_LOCK_KEY_MODS, GLFW_TRUE);
-
-				if (!gladLoadGL()) {
-								std::cout << "Failed to load GL\n";
-								return 0;
-				}
-    
-				start();
-
-				glEnable(GL_BLEND);
-				glEnable(GL_DEPTH_TEST);
-				glEnable(GL_CULL_FACE);
-    glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
-				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-				glfwSwapInterval(0);
-
-				while (!glfwWindowShouldClose(mainWindow))
-				{
-								if (_hideMouse) {
-												glfwSetInputMode(mainWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-								}
-								else
-												glfwSetInputMode(mainWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+  mainWindow = glfwCreateWindow(_screenWidth, _screenHeight, _windowTitle.c_str(), nullptr, nullptr);
+  if (!mainWindow) {
+    std::cout << "Failed to load window\n";
+    return 0;
+  }
+  glfwMakeContextCurrent(mainWindow);
+  glfwSetWindowSizeCallback(mainWindow, windowScaleCallback);
+  glfwSetCursorPosCallback(mainWindow, mouseMoveCallback);
+  glfwSetMouseButtonCallback(mainWindow, mouseClickCallback);
+  glfwSetKeyCallback(mainWindow, keyPressCallback);
+  glfwSetScrollCallback(mainWindow, mouseScrollCallback);
+  glfwSetWindowPosCallback(mainWindow, windowMoveCallback);
 
 
-								std::chrono::time_point timePoint = std::chrono::steady_clock().now();
-								glfwPollEvents();
-								update();
-								glfwSwapBuffers(mainWindow);
+  glfwSetInputMode(mainWindow, GLFW_LOCK_KEY_MODS, GLFW_TRUE);
 
-								if (_closeApp)
-												glfwSetWindowShouldClose(mainWindow, 1);
-								if (_vsync)
-												glfwSwapInterval(1);
-								else
-												glfwSwapInterval(0);
+  if (!gladLoadGL()) {
+    std::cout << "Failed to load GL\n";
+    return 0;
+  }
+
+  start();
+
+  glEnable(GL_BLEND);
+  glEnable(GL_DEPTH_TEST);
+  glEnable(GL_CULL_FACE);
+  glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+  glfwSwapInterval(0);
+
+  while (!glfwWindowShouldClose(mainWindow)) {
+    if (_hideMouse) {
+      glfwSetInputMode(mainWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    } else
+      glfwSetInputMode(mainWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 
 
-								delay = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock().now() - timePoint).count();
-								_deltaTime = (double)delay / 1000000;
-				}
+    std::chrono::time_point timePoint = std::chrono::steady_clock().now();
+    glfwPollEvents();
+    update();
+    glfwSwapBuffers(mainWindow);
 
-				end();
+    if (_closeApp)
+      glfwSetWindowShouldClose(mainWindow, 1);
+    if (_vsync)
+      glfwSwapInterval(1);
+    else
+      glfwSwapInterval(0);
 
-				return 1;
+
+    delay = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock().now() - timePoint).count();
+    _deltaTime = (double)delay / 1000000;
+  }
+
+  end();
+
+  return 1;
 }
 
 
@@ -362,11 +360,16 @@ int run() {
 
 //Class operators
 std::ostream& operator <<(std::ostream& stream, const Vec2& val) {
-				stream << val.x << ", " << val.y;
-				return stream;
+  stream << val.x << ", " << val.y;
+  return stream;
 }
 
 std::ostream& operator <<(std::ostream& stream, const Vec3& val) {
-				stream << val.x << ", " << val.y << ", " << val.z;
-				return stream;
+  stream << val.x << ", " << val.y << ", " << val.z;
+  return stream;
+}
+
+std::ostream& operator <<(std::ostream& stream, const Vec4& val) {
+  stream << val.x << ", " << val.y << ", " << val.z << ", " << val.w;
+  return stream;
 }

@@ -130,10 +130,16 @@
     <ClCompile Include="src\meshTypeFunctions.cpp">
       <Filter>appFiles\TypeFunctions</Filter>
     </ClCompile>
-    <ClCompile Include="src\ptrArrayFunctions.cpp">
+    <ClCompile Include="src\ptrArrayTypeFunctions.cpp">
       <Filter>appFiles\TypeFunctions</Filter>
     </ClCompile>
     <ClCompile Include="src\textureTypeFunctions.cpp">
+      <Filter>appFiles\TypeFunctions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lightTypeFunctions.cpp">
+      <Filter>appFiles\TypeFunctions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cameraTypeFunctions.cpp">
       <Filter>appFiles\TypeFunctions</Filter>
     </ClCompile>
   </ItemGroup>

@@ -60,7 +60,9 @@ extern "C" {
 #endif
 
   __declspec(dllexport) void*   basicApp_createUniqueType(Unique::Types type);
-
+  __declspec(dllexport) void basicApp_deleteUniqueType(UniqueType* tType);
+  __declspec(dllexport) bool basicApp_saveUniqueType(UniqueType* tType, const char* objName);
+  __declspec(dllexport) void* basicApp_instantiateUniqueType(const char* objName);
 
 #ifdef __cplusplus
 }
@@ -155,6 +157,20 @@ extern "C" {
   __declspec(dllexport) void* basicApp_loadEnvironmentTexture(const char* name, bool abs, bool flip);
   __declspec(dllexport) void* basicApp_loadCubeMapTexture(const char* name, const char* textures[6], int texType, bool abs, bool flip, bool gCorrection);
   __declspec(dllexport) void* basicApp_loadTexture(const char* name, int texType, bool abs, bool flip, bool gCorrection);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+
+#ifdef _MODEL_LOADING
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+  __declspec(dllexport) bool basicApp_loadModel(const char* path, bool abs, const char* objName, bool flipUVs);
 
 #ifdef __cplusplus
 }

@@ -1,22 +1,22 @@
-﻿public unsafe partial class UniqueType : BufferType {
+﻿public partial class UniqueType : BufferType {
   //(SceneTransform)transform
   //--------------------------------------------------
-  public SceneTransform transform {
+  public virtual SceneTransform transform {
     get => basicApp_uniqueTypeTransform(buffer);
     set => basicApp_setUniqueTypeTransform(buffer, value);
   }
 
-  public Vec3 position {
+  public virtual Vec3 position {
     get => basicApp_uniqueTypeTransformPosition(buffer);
     set => basicApp_setUniqueTypeTransformPosition(buffer, value);
   }
 
-  public Vec3 scale {
+  public virtual Vec3 scale {
     get => basicApp_uniqueTypeTransformScale(buffer);
     set => basicApp_setUniqueTypeTransformScale(buffer, value);
   }
 
-  public Vec3 rotation {
+  public virtual Vec3 rotation {
     get => basicApp_uniqueTypeTransformRotation(buffer);
     set => basicApp_setUniqueTypeTransformRotation(buffer, value);
   }
@@ -26,22 +26,22 @@
 
   //(SceneTransform)relativeTransform
   //--------------------------------------------------
-  public SceneTransform relativeTransform {
+  public virtual SceneTransform relativeTransform {
     get => basicApp_uniqueTypeRelativeTransform(buffer);
     set => basicApp_setUniqueTypeRelativeTransform(buffer, value);
   }
 
-  public Vec3 relativePosition {
+  public virtual Vec3 relativePosition {
     get => basicApp_uniqueTypeRelativeTransformPosition(buffer);
     set => basicApp_setUniqueTypeRelativeTransformPosition(buffer, value);
   }
 
-  public Vec3 relativeScale {
+  public virtual Vec3 relativeScale {
     get => basicApp_uniqueTypeRelativeTransformScale(buffer);
     set => basicApp_setUniqueTypeRelativeTransformScale(buffer, value);
   }
 
-  public Vec3 relativeRotation {
+  public virtual Vec3 relativeRotation {
     get => basicApp_uniqueTypeRelativeTransformRotation(buffer);
     set => basicApp_setUniqueTypeRelativeTransformRotation(buffer, value);
   }

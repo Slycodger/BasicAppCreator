@@ -201,6 +201,61 @@ void main() {
     Lo          += (kD * albedo / PI + specular) * radiance * NdotL;
 		}
 
+  attenuation = 1;
+  for (int i = 0; i < directionalLightCount; i++) {
+    L           = -normalize(directionalLights[i].direction.xyz);
+
+    H           = normalize(V + L);
+  
+    radiance    = directionalLights[i].color.xyz;
+
+    NDF         = DistributionGGX(N, H, roughness);   
+    G           = GeometrySmith(N, V, L, roughness);      
+    F           = fresnelSchlick(clamp(dot(H, V), 0.0, 1.0), F0);
+
+    numerator   = NDF * G * F; 
+    denominator = 4.0 * max(dot(N, V), 0.0) * max(dot(N, L), 0.0) + 0.0001;
+    vec3 specular    = numerator / denominator;
+
+    kS          = F;
+    kD          = vec3(1.0) - kS;
+    kD          *= 1.0 - metallic;	  
+
+    NdotL       = max(dot(N, L), 0.0);        
+
+    Lo          += (kD * albedo / PI + specular) * radiance * NdotL;
+  }
+
+		for (int i = 0; i < spotLightCount; i++) {
+    L           = normalize(spotLights[i].position.xyz - fragPos);
+    lightDist   = length(spotLights[i].position.xyz - fragPos);
+    attenuation = 1 / (lightDist * lightDist);
+    H           = normalize(V + L);
+
+    float theta     = dot(L, normalize(-spotLights[i].direction.xyz));
+    float epsilon   = spotLights[i].innerCutoff - spotLights[i].outerCutoff;
+    float intensity = clamp((theta - spotLights[i].outerCutoff) / epsilon, 0.0, 1.0);   
+  
+    radiance    = spotLights[i].color.xyz * attenuation * intensity;
+
+
+    NDF         = DistributionGGX(N, H, roughness);   
+    G           = GeometrySmith(N, V, L, roughness);      
+    F           = fresnelSchlick(clamp(dot(H, V), 0.0, 1.0), F0);
+
+    numerator   = NDF * G * F; 
+    denominator = 4.0 * max(dot(N, V), 0.0) * max(dot(N, L), 0.0) + 0.0001;
+    vec3 specular    = numerator / denominator;
+
+    kS          = F;
+    kD          = vec3(1.0) - kS;
+    kD          *= 1.0 - metallic;
+
+    NdotL       = max(dot(N, L), 0.0);        
+
+    Lo          += (kD * albedo / PI + specular) * radiance * NdotL;
+  }
+
   F = fresnelSchlickRoughness(max(dot(N, V), 0.0), F0, roughness); 
   kS = F;
   kD = 1.0 - kS;

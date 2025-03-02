@@ -31,6 +31,27 @@ void* basicApp_createUniqueType(Unique::Types type) {
 
 
 
+//--------------------------------------------------
+void basicApp_deleteUniqueType(UniqueType* tType) {
+  deleteUniqueType(tType);
+}
+
+
+
+//--------------------------------------------------
+bool basicApp_saveUniqueType(UniqueType* tType, const char* objName) {
+  return saveUniqueType(tType, objName);
+}
+
+
+
+//--------------------------------------------------
+void* basicApp_instantiateUniqueType(const char* objName) {
+  return instantiateUniqueType(objName);
+}
+
+
+
 
 
 
@@ -80,7 +101,6 @@ UniqueType* instantiateUniqueType(std::string objName) {
 
 
 
-//Create an object with a mesh
 UniqueType* createUniqueType(Unique::Types type) {
   UniqueType* ret = nullptr;
 
@@ -295,7 +315,6 @@ unsigned int getUniqueTypeScriptIndex(UniqueType* tType, std::string name) {
   }
   return UINT_MAX;
 }
-
 
 //Updates an objects scripts
 void updateUniqueTypeScripts(UniqueType* tType) {

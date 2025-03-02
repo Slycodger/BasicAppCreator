@@ -1,5 +1,19 @@
+#define _MODEL_LOADING
+#include "basicApp.h"
 #include "modelLoading.h"
 using namespace nModelLoading;
+
+
+bool basicApp_loadModel(const char* path, bool abs, const char* objName, bool flipUVs) {
+  return loadModel(path, abs, objName, flipUVs);
+}
+
+
+
+
+
+
+
 
 std::vector<std::tuple<uint*, uint*, std::vector<Vertex>>> meshContainers;
 
@@ -234,10 +248,7 @@ Object* handleNode(Object* obj, aiNode* node) {
       continue;
 
     while (true) {
-      if (childOn >= obj->children.size())
-        continue;
-
-      if (!((Object*)obj->children[childOn])->mesh) {
+      if (((Object*)obj->children[childOn])->node) {
         handleNode(((Object*)obj->children[childOn]), node->mChildren[i]);
         childOn++;
         break;
@@ -250,19 +261,20 @@ Object* handleNode(Object* obj, aiNode* node) {
 }
 
 
-namespace nModelLoading {
-  void start(std::string str, std::string objName, bool flipUVs) {
-    Assimp::Importer importer;
-    importer.SetPropertyInteger(AI_CONFIG_PP_SBP_REMOVE, aiPrimitiveType_POINT | aiPrimitiveType_LINE);
-    const aiScene* scene = importer.ReadFile(str.c_str(), aiProcess_Triangulate | aiProcess_GenNormals | aiProcess_FixInfacingNormals | (flipUVs ? aiProcess_FlipUVs : 0) | aiProcess_CalcTangentSpace);
-    if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
-      std::cout << "Failed to load model\n";
-      return;
-    }
-    Object* mesh = new Object();
-    saveUniqueType(handleNode(processNode(scene->mRootNode, scene, mesh, objName, str.substr(0, str.find_last_of('/') + 1)), scene->mRootNode), objName);
+bool loadModel(std::string path, bool abs, std::string objName, bool flipUVs) {
+  Assimp::Importer importer;
+  importer.SetPropertyInteger(AI_CONFIG_PP_SBP_REMOVE, aiPrimitiveType_POINT | aiPrimitiveType_LINE);
+  const aiScene* scene = importer.ReadFile((abs ? "" : "./models/" + path), aiProcess_Triangulate | aiProcess_GenNormals | aiProcess_FixInfacingNormals | (flipUVs ? aiProcess_FlipUVs : 0) | aiProcess_CalcTangentSpace);
+  if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
+    std::cout << "Failed to load model\n";
+    return false;
   }
+  Object* mesh = new Object();
+  saveUniqueType(handleNode(processNode(scene->mRootNode, scene, mesh, objName, path.substr(0, path.find_last_of('/') + 1)), scene->mRootNode), objName);
+  return true;
+}
 
+namespace nModelLoading {
   void end() {
     for (auto& g : meshContainers) {
       glDeleteBuffers(1, std::get<0>(g));

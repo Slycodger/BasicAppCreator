@@ -8,7 +8,9 @@
 #include "mathConstants.h"
 #include "UniqueTypes.h"
 
+bool loadModel(std::string path, bool abs, std::string objName, bool flipUVs);
+
+
 namespace nModelLoading {
-				void start(std::string str, std::string objName, bool flipUVs);
 				void end();
 }

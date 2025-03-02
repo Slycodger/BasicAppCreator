@@ -100,7 +100,7 @@ public:
 
 
   ShaderDirectionalLight activeLight;
-  bool rotations = false;
+  bool followRotations = false;
   int index = -1;
 
   UniqueType* copySelf() override {
@@ -111,7 +111,7 @@ public:
 
   glm::mat4 rotationMatrix = glm::mat4(1);
   void update() override {
-    if (rotations) {
+    if (followRotations) {
       rotationMatrix = glm::mat4(1);
       rotationMatrix = glm::rotate(rotationMatrix, transform.rotation.x * _degToRadF, glm::vec3(1, 0, 0));
       rotationMatrix = glm::rotate(rotationMatrix, transform.rotation.y * _degToRadF, glm::vec3(0, 1, 0));
@@ -130,14 +130,14 @@ public:
   }
 
 
-  DirectionalLight(char) : activeLight(ShaderDirectionalLight()), index(-1), rotations(false) {}
+  DirectionalLight(char) : activeLight(ShaderDirectionalLight()), index(-1), followRotations(false) {}
 
   DirectionalLight() {
     activeLight = ShaderDirectionalLight();
     index = directionalLightCount;
     lights[index] = this;
     directionalLightCount++;
-    rotations = false;
+    followRotations = false;
   }
 
   DirectionalLight(Vec4 dir, Vec4 c) {
@@ -145,7 +145,7 @@ public:
     index = directionalLightCount;
     lights[index] = this;
     directionalLightCount++;
-    rotations = false;
+    followRotations = false;
   }
 };
 
@@ -159,7 +159,7 @@ public:
   static int spotLightCount;
 
 
-  bool rotations = false;
+  bool followRotations = false;
 
   ShaderSpotLight activeLight;
   int index = -1;
@@ -174,7 +174,7 @@ public:
 
   void update() override {
     activeLight.position = transform.position;
-    if (rotations) {
+    if (followRotations) {
       rotationMatrix = glm::mat4(1);
       rotationMatrix = glm::rotate(rotationMatrix, transform.rotation.x * _degToRadF, glm::vec3(1, 0, 0));
       rotationMatrix = glm::rotate(rotationMatrix, transform.rotation.y * _degToRadF, glm::vec3(0, 1, 0));
@@ -193,16 +193,16 @@ public:
   }
 
 
-  SpotLight(char) : activeLight(ShaderSpotLight()), index(-1), rotations(false) {}
+  SpotLight(char) : activeLight(ShaderSpotLight()), index(-1), followRotations(false) {}
 
-  SpotLight() : rotations(false) {
+  SpotLight() : followRotations(false) {
     activeLight = ShaderSpotLight();
     index = spotLightCount;
     lights[index] = this;
     spotLightCount++;
   }
 
-  SpotLight(Vec4 pos, Vec4 dir, Vec4 c, float iR, float oR) : rotations(false) {
+  SpotLight(Vec4 pos, Vec4 dir, Vec4 c, float iR, float oR) : followRotations(false) {
     activeLight = ShaderSpotLight(pos, dir, c, iR, oR);
     index = spotLightCount;
     lights[index] = this;

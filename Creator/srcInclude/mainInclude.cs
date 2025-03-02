@@ -60,6 +60,13 @@ public partial class Program {
   };
   [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl)]
   public static extern IntPtr basicApp_createUniqueType(Unique type);
+  [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl)]
+  public static extern void basicApp_deleteUniqueType(IntPtr type);
+  [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+  public static extern bool basicApp_saveUniqueType(IntPtr tType, string objName);
+  [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+  public static extern IntPtr basicApp_instantiateUniqueType(string objName);
+
   //--------------------------------------------------
 
 
@@ -78,13 +85,11 @@ public partial class Program {
   public static extern void basicApp_setMoveSpeed(float speed);
   [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl)]
   public static extern float basicApp_moveSpeed();
-  [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl)]
-  public static extern void basicApp_keyLatchKeys();
   //--------------------------------------------------
 
 
 
-  //progBoiler
+  //input
   //--------------------------------------------------
   [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl)]
   static extern bool basicApp_keyPressed(int key);
@@ -92,6 +97,18 @@ public partial class Program {
   static extern bool basicApp_keyHeld(int key);
   [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl)]
   static extern bool basicApp_keyReleased(int key);
+  [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl)]
+  static extern bool basicApp_scrolling();
+  [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl)]
+  static extern bool basicApp_scrollUp();
+  [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl)]
+  static extern bool basicApp_scrollDown();
+  [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl)]
+  static extern bool basicApp_getNumlock();
+  [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl)]
+  static extern bool basicApp_getShift();
+  [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl)]
+  static extern void basicApp_keyLatchKeys();
   //--------------------------------------------------
 
 
@@ -101,6 +118,15 @@ public partial class Program {
   [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
   static extern bool basicApp_setObjectMesh(IntPtr ptr, string mesh);
   //--------------------------------------------------
+
+
+
+  //modelLoading
+  //--------------------------------------------------
+  [DllImport("BasicApp.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+  static extern bool basicApp_loadModel(string path, bool abs, string objName, bool flipUVs);
+  //--------------------------------------------------
+
 
 
 

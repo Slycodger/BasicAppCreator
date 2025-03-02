@@ -18,7 +18,7 @@
 
 
   public Mesh(IntPtr ptr) : base(ptr) {
-    //SIZEOF Vertex
+    //SIZEOF Vertex : 44
     vertices = new Array<Vertex>(basicApp_meshVerticeBuffer(buffer), basicApp_meshVerticeLength(buffer), 44);
   }
 }

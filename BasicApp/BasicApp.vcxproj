@@ -158,18 +158,20 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\cameraTypeFunctions.cpp" />
     <ClCompile Include="src\flowControl.cpp" />
     <ClCompile Include="src\globalScripts.cpp" />
     <ClCompile Include="src\graphicsSettings.cpp" />
     <ClCompile Include="src\input.cpp" />
     <ClCompile Include="src\intializeShader.cpp" />
+    <ClCompile Include="src\lightTypeFunctions.cpp" />
     <ClCompile Include="src\material.cpp" />
     <ClCompile Include="src\materialFunctions.cpp" />
     <ClCompile Include="src\meshTypeFunctions.cpp" />
     <ClCompile Include="src\modelLoading.cpp" />
     <ClCompile Include="src\objects.cpp" />
     <ClCompile Include="src\objectTypeFunctions.cpp" />
-    <ClCompile Include="src\ptrArrayFunctions.cpp" />
+    <ClCompile Include="src\ptrArrayTypeFunctions.cpp" />
     <ClCompile Include="src\textureTypeFunctions.cpp" />
     <ClCompile Include="src\uniqueTypeFunctions.cpp" />
     <ClCompile Include="src\uniqueTypes.cpp" />

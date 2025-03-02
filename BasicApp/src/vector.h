@@ -74,7 +74,7 @@ struct Vec2 {
 		return temp;
 	}
 
-    friend std::ostream& operator <<(std::ostream& stream, const Vec2& val);
+  friend std::ostream& operator <<(std::ostream& stream, const Vec2& val);
 };
 
 struct iVec2 {
@@ -254,6 +254,8 @@ struct Vec4 {
         this->w = val.w;
         return *this;
     }
+
+    friend std::ostream& operator <<(std::ostream& stream, const Vec4& val);
 };
 
 struct IVec4 {
