@@ -23,7 +23,7 @@ void basicApp_mainCameraLook() {
 
   if (!_hideMouse)
     return;
-  cam->setRotation(-_mousePosY * lookSpeed, -(_mousePosX) * lookSpeed, 0);
+  cam->setRotation(_mousePosY * lookSpeed, _mousePosX * lookSpeed, 0);
 }
 
 

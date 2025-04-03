@@ -27,6 +27,7 @@
     sLight.outerCutoff = MathF.Cos(45.0f * DegToRadF);
     sLight.direction = new Vec4(0, 0, -1, 0);
     sLight.parent = cam;
+    sLight.followRotations = true;
 
 
     cube1.position = new Vec3(0, 0, -3);
@@ -67,7 +68,7 @@
 
       light.position = light.position - new Vec3(0, 0, basicApp_deltaTime());
 
-      sLight.direction = cam.forwardDirection;
+      //sLight.direction = cam.forwardDirection;
 
 
       if (basicApp_keyPressed(KEY_Q))
@@ -88,10 +89,10 @@
 
 
       if (basicApp_scrollDown())
-        cam.FOV += 5.0f * DegToRadF;
+        cube.rotation = new Vec3(cube.rotation.x + 1.0f, 0, 0);
 
       if (basicApp_scrollUp())
-        cam.FOV -= 5.0f * DegToRadF;
+        cube.rotation = new Vec3(cube.rotation.x - 1.0f, 0, 0);
 
       cam.UpdatePerspectiveView();
 

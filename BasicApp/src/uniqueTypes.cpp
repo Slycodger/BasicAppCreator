@@ -108,7 +108,7 @@ UniqueType* createUniqueType(Unique::Types type) {
   case Unique::INVALID:
     return nullptr;
     break;
-  case Unique::UNIQUE :
+  case Unique::UNIQUE:
     ret = new UniqueType();
     break;
   case Unique::OBJECT:
@@ -354,16 +354,26 @@ void updateUniqueTypeChildren(UniqueType* tType) {
 }
 
 //Creates the transformation matrix for an object
-glm::mat4 createUniqueTypeTransformMatrix(UniqueType* obj) {
+glm::mat4 createUniqueTypeTransformMatrix(UniqueType* unique) {
+  if (!unique)
+    return glm::mat4(1);
 
   glm::mat4 ret = glm::mat4(1);
-  ret = glm::translate(ret, obj->transform.position.toGLM());
-  ret = glm::rotate(ret, (float)_degToRad * obj->transform.rotation.x, glm::vec3(1, 0, 0));
-  ret = glm::rotate(ret, (float)_degToRad * obj->transform.rotation.y, glm::vec3(0, 1, 0));
-  ret = glm::rotate(ret, (float)_degToRad * obj->transform.rotation.z, glm::vec3(0, 0, 1));
-  ret = glm::scale(ret, obj->transform.scale.toGLM());
+  glm::mat4 translation = glm::mat4(1);
+  glm::mat4 rotation;
+  glm::mat4 scale = glm::mat4(1);
 
-  return ret;
+
+  translation = glm::translate(translation, unique->transform.position.toGLM());
+  scale = glm::scale(scale, unique->transform.scale.toGLM());
+
+  float x = _degToRadF * unique->transform.rotation.x;
+  float y = _degToRadF * unique->transform.rotation.y;
+  float z = _degToRadF * unique->transform.rotation.z;
+  rotation = glm::mat4(glm::quat(glm::vec3(x, y, z)));
+
+  return translation * rotation * scale;
+
 }
 
 

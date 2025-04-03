@@ -4,6 +4,7 @@
 #include "mathConstants.h"
 #include "transform.h"
 #include "constants.h"
+#include "algorithm"
 
 class Camera : public UniqueType {
   int cameraIndex;
@@ -102,12 +103,14 @@ public:
   Camera() : UniqueType(), FOV(70), nearClip(0.001f), farClip(100.f), width(1), height(1), perspectiveView(0), orthographicView(0), viewMatrix(1) {
     if (!addCamera(this))
       index = -1;
+    transform.rotation.y = 270.f;
     updatePerspectiveView();
     updateOrthographicView();
   }
   Camera(float fov, float N, float F, float R, float W, float H, float D) : UniqueType(), FOV(fov), nearClip(N), farClip(F), ratio(R), width(W), height(H), depth(D), perspectiveView(0), orthographicView(0), viewMatrix(1) {
     if (!addCamera(this))
       index = -1;
+    transform.rotation.y = 270.f;
     updatePerspectiveView();
     updateOrthographicView();
   }
@@ -150,19 +153,26 @@ public:
   }
 
   void setViewMatrix() {
-    viewMatrix = glm::mat4(1);
-    viewMatrix = glm::rotate(viewMatrix, transform.rotation.x * (float)_degToRad, glm::vec3(1, 0, 0));
-    viewMatrix = glm::rotate(viewMatrix, -transform.rotation.y * (float)_degToRad, glm::vec3(0, 1, 0));
-    viewMatrix = glm::rotate(viewMatrix, transform.rotation.z * (float)_degToRad, glm::vec3(0, 0, 1));
-    viewMatrix = glm::translate(viewMatrix, glm::vec3(-transform.position.x, -transform.position.y, -transform.position.z));
+    Vec3 lookDir = Vec3(0);
+    float pitch = transform.rotation.x * _degToRadF;
+    float yaw = transform.rotation.y * _degToRadF;
+
+    lookDir.x = cos(yaw) * cos(pitch);
+    lookDir.y = sin(pitch);
+    lookDir.z = sin(yaw) * cos(pitch);
+
+    viewMatrix = glm::lookAt(transform.position.toGLM(), (transform.position + lookDir).toGLM(), { 0, 1, 0 });
   }
 
   Vec3 forwardDirection() {
     Vec3 ret;
 
-    ret.x = cos(_degToRad * (transform.rotation.y + 90)) * cos(_degToRad * transform.rotation.x);
-    ret.y = sin(_degToRad * -transform.rotation.x);
-    ret.z = cos(_degToRad * transform.rotation.x) * sin(_degToRad * (transform.rotation.y - 90));
+    float pitch = transform.rotation.x * _degToRadF;
+    float yaw = transform.rotation.y * _degToRadF;
+
+    ret.x = cos(yaw) * cos(pitch);
+    ret.y = sin(pitch);
+    ret.z = sin(yaw) * cos(pitch);
 
     return ret;
   }
@@ -170,37 +180,41 @@ public:
   Vec3 rightDirection() {
     Vec3 ret;
 
-    ret.x = cos(_degToRad * transform.rotation.y);
+    float yaw = (transform.rotation.y + 90.f) * _degToRadF;
+
+    ret.x = cos(yaw);
     ret.y = 0;
-    ret.z = sin(_degToRad * -transform.rotation.y);
+    ret.z = sin(yaw);
+
+    std::cout << transform.rotation.y << "\n";
 
     return ret;
   }
 
   Vec3 upDirection() {
-    return Vec3::cross(forwardDirection(), rightDirection());
+    return -Vec3::cross(forwardDirection(), rightDirection());
   }
 
   void setRotation(Vec3 rot) {
-    transform.rotation.x = glm::mod(rot.x, 360.f);
+    transform.rotation.x = std::clamp(rot.x, -89.f, 89.f);
     transform.rotation.y = glm::mod(rot.y, 360.f);
     transform.rotation.z = glm::mod(rot.z, 360.f);
   }
 
   void addRotation(Vec3 rot) {
-    transform.rotation.x = glm::mod(transform.rotation.x + rot.x, 360.f);
+    transform.rotation.x = std::clamp(transform.rotation.x + rot.x, -89.f, 89.f);
     transform.rotation.y = glm::mod(transform.rotation.y + rot.y, 360.f);
     transform.rotation.z = glm::mod(transform.rotation.z + rot.z, 360.f);
   }
 
   void setRotation(float x, float y, float z) {
-    transform.rotation.x = glm::mod(x, 360.f);
+    transform.rotation.x = std::clamp(x, -89.f, 89.f);
     transform.rotation.y = glm::mod(y, 360.f);
     transform.rotation.z = glm::mod(z, 360.f);
   }
 
   void addRotation(float x, float y, float z) {
-    transform.rotation.x = glm::mod(transform.rotation.x + x, 360.f);
+    transform.rotation.x = std::clamp(transform.rotation.x + x, -89.f, 89.f);
     transform.rotation.y = glm::mod(transform.rotation.y + y, 360.f);
     transform.rotation.z = glm::mod(transform.rotation.z + z, 360.f);
   }

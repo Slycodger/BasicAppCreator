@@ -216,6 +216,15 @@ struct Vec3 {
         temp.z -= val.z;
         return temp;
     }
+
+    Vec3 operator -() {
+      Vec3 temp = *this;
+      temp.x = -temp.x;
+      temp.y = -temp.y;
+      temp.z = -temp.z;
+      return temp;
+    }
+
     Vec3 operator +(const Vec3& val) {
         Vec3 temp = *this;
         temp.x += val.x;
@@ -247,12 +256,43 @@ struct Vec4 {
       return Vec3(x, y, z);
     }
 
+    float magnitude() {
+      return sqrt(x * x + y * y + z * z + w * w);
+    }
+
+    Vec4 normalized() {
+      Vec4 temp = *this;
+      temp /= temp.magnitude();
+      return temp;
+    }
+
     Vec4& operator =(const Vec4& val) {
         this->x = val.x;
         this->y = val.y;
         this->z = val.z;
         this->w = val.w;
         return *this;
+    }
+
+    bool operator ==(const Vec4 val) {
+      return this->x == val.x && this->y == val.y && this->z == val.z && this->w == val.w;
+    }
+
+    Vec4 operator *(const Vec4& val) {
+      Vec4 temp = *this;
+      temp.x *= val.x;
+      temp.y *= val.y;
+      temp.z *= val.z;
+      temp.w *= val.w;
+      return temp;
+    }
+
+    Vec4& operator /=(const Vec4& val) {
+      this->x /= val.x;
+      this->y /= val.y;
+      this->z /= val.z;
+      this->w /= val.w;
+      return *this;
     }
 
     friend std::ostream& operator <<(std::ostream& stream, const Vec4& val);

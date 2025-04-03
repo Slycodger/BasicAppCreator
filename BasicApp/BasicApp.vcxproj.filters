@@ -49,14 +49,14 @@
     <Filter Include="appFiles\Shaders\Prefilter">
       <UniqueIdentifier>{31e28d8f-610a-4ac7-9847-8016a7052091}</UniqueIdentifier>
     </Filter>
-    <Filter Include="appFiles\Shaders\Irradiance">
-      <UniqueIdentifier>{80f36329-6b5c-44e1-87ea-1d1df9673f89}</UniqueIdentifier>
-    </Filter>
     <Filter Include="appFiles\Shaders\BRDF">
       <UniqueIdentifier>{300e4df8-ff99-4444-973a-05dffe3e90d9}</UniqueIdentifier>
     </Filter>
     <Filter Include="appFiles\TypeFunctions">
       <UniqueIdentifier>{ef3a6de5-2ea3-4543-947b-f9a9978647cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appFiles\Shaders\Irradiance">
+      <UniqueIdentifier>{80f36329-6b5c-44e1-87ea-1d1df9673f89}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

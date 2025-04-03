@@ -54,15 +54,15 @@ public:
 
     glm::mat4 Translation(1);
     if (node) {
-      Translation = glm::rotate(Translation, glm::radians<float>(relativeTransform.rotation.x + parent->transform.rotation.x), glm::vec3(1, 0, 0));
-      Translation = glm::rotate(Translation, glm::radians<float>(relativeTransform.rotation.y + parent->transform.rotation.y), glm::vec3(0, 1, 0));
       Translation = glm::rotate(Translation, glm::radians<float>(relativeTransform.rotation.z + parent->transform.rotation.z), glm::vec3(0, 0, 1));
+      Translation = glm::rotate(Translation, glm::radians<float>(relativeTransform.rotation.y + parent->transform.rotation.y), glm::vec3(0, 1, 0));
+      Translation = glm::rotate(Translation, glm::radians<float>(relativeTransform.rotation.x + parent->transform.rotation.x), glm::vec3(1, 0, 0));
     }
     Translation = glm::translate(Translation, (relativeTransform.position * parent->transform.scale).toGLM());
 
     transform.position = Translation * glm::vec4(0, 0, 0, 1);
     transform.position += parent->transform.position;
-    transform.rotation = relativeTransform.rotation + parent->transform.rotation;
+    transform.rotation = parent->transform.rotation;
     transform.scale = parent->transform.scale * relativeTransform.scale;
   }
   void removeParent() {

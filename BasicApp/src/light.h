@@ -112,11 +112,12 @@ public:
   glm::mat4 rotationMatrix = glm::mat4(1);
   void update() override {
     if (followRotations) {
-      rotationMatrix = glm::mat4(1);
-      rotationMatrix = glm::rotate(rotationMatrix, transform.rotation.x * _degToRadF, glm::vec3(1, 0, 0));
-      rotationMatrix = glm::rotate(rotationMatrix, transform.rotation.y * _degToRadF, glm::vec3(0, 1, 0));
-      rotationMatrix = glm::rotate(rotationMatrix, transform.rotation.z * _degToRadF, glm::vec3(0, 0, 1));
-      activeLight.direction = rotationMatrix * glm::vec4(0, 0, -1, 1);
+      float pitch = transform.rotation.x * _degToRadF;
+      float yaw = (transform.rotation.y - 90.f) * _degToRadF;
+
+      activeLight.direction.x = cos(yaw) * cos(pitch);
+      activeLight.direction.y = sin(pitch);
+      activeLight.direction.z = sin(yaw) * cos(pitch);
     }
   }
 
@@ -164,7 +165,6 @@ public:
   ShaderSpotLight activeLight;
   int index = -1;
 
-  glm::mat4 rotationMatrix = glm::mat4(1);
 
   UniqueType* copySelf() override {
     SpotLight* ret = new SpotLight('c');
@@ -175,11 +175,12 @@ public:
   void update() override {
     activeLight.position = transform.position;
     if (followRotations) {
-      rotationMatrix = glm::mat4(1);
-      rotationMatrix = glm::rotate(rotationMatrix, transform.rotation.x * _degToRadF, glm::vec3(1, 0, 0));
-      rotationMatrix = glm::rotate(rotationMatrix, transform.rotation.y * _degToRadF, glm::vec3(0, 1, 0));
-      rotationMatrix = glm::rotate(rotationMatrix, transform.rotation.z * _degToRadF, glm::vec3(0, 0, 1));
-      activeLight.direction = rotationMatrix * glm::vec4(0, 0, -1, 1);
+      float pitch = transform.rotation.x * _degToRadF;
+      float yaw = (transform.rotation.y - 90.f) * _degToRadF;
+
+      activeLight.direction.x = cos(yaw) * cos(pitch);
+      activeLight.direction.y = sin(pitch);
+      activeLight.direction.z = sin(yaw) * cos(pitch);
     }
   }
 
