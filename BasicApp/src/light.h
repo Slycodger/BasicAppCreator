@@ -113,7 +113,7 @@ public:
   void update() override {
     if (followRotations) {
       float pitch = transform.rotation.x * _degToRadF;
-      float yaw = (transform.rotation.y - 90.f) * _degToRadF;
+      float yaw = transform.rotation.y * _degToRadF;
 
       activeLight.direction.x = cos(yaw) * cos(pitch);
       activeLight.direction.y = sin(pitch);
@@ -176,7 +176,7 @@ public:
     activeLight.position = transform.position;
     if (followRotations) {
       float pitch = transform.rotation.x * _degToRadF;
-      float yaw = (transform.rotation.y - 90.f) * _degToRadF;
+      float yaw = transform.rotation.y * _degToRadF;
 
       activeLight.direction.x = cos(yaw) * cos(pitch);
       activeLight.direction.y = sin(pitch);
@@ -229,65 +229,3 @@ public:
   ShaderSpotLight lights[_MAX_ACTING_SPOT_LIGHTS] = {};
   SpotLightContainer() : lights() {}
 };
-
-
-
-constexpr const char* POINTLIGHTCOLOR0 = "pointLights[0].color";
-constexpr const char* POINTLIGHTCOLOR1 = "pointLights[1].color";
-constexpr const char* POINTLIGHTCOLOR2 = "pointLights[2].color";
-constexpr const char* POINTLIGHTCOLOR3 = "pointLights[3].color";
-constexpr const char* POINTLIGHTCOLOR4 = "pointLights[4].color";
-constexpr const char* POINTLIGHTCOLOR5 = "pointLights[5].color";
-constexpr const char* POINTLIGHTCOLOR6 = "pointLights[6].color";
-constexpr const char* POINTLIGHTCOLOR7 = "pointLights[7].color";
-constexpr const char* POINTLIGHTCOLOR[8] = { POINTLIGHTCOLOR0, POINTLIGHTCOLOR1, POINTLIGHTCOLOR2, POINTLIGHTCOLOR3, POINTLIGHTCOLOR4, POINTLIGHTCOLOR5, POINTLIGHTCOLOR6, POINTLIGHTCOLOR7 };
-
-constexpr const char* POINTLIGHTPOS0 = "pointLights[0].pos";
-constexpr const char* POINTLIGHTPOS1 = "pointLights[1].pos";
-constexpr const char* POINTLIGHTPOS2 = "pointLights[2].pos";
-constexpr const char* POINTLIGHTPOS3 = "pointLights[3].pos";
-constexpr const char* POINTLIGHTPOS4 = "pointLights[4].pos";
-constexpr const char* POINTLIGHTPOS5 = "pointLights[5].pos";
-constexpr const char* POINTLIGHTPOS6 = "pointLights[6].pos";
-constexpr const char* POINTLIGHTPOS7 = "pointLights[7].pos";
-constexpr const char* POINTLIGHTPOS[8] = { POINTLIGHTPOS0, POINTLIGHTPOS1, POINTLIGHTPOS2, POINTLIGHTPOS3, POINTLIGHTPOS4, POINTLIGHTPOS5, POINTLIGHTPOS6, POINTLIGHTPOS7 };
-
-constexpr const char* POINTLIGHTCONSTANT0 = "pointLights[0].constant";
-constexpr const char* POINTLIGHTCONSTANT1 = "pointLights[1].constant";
-constexpr const char* POINTLIGHTCONSTANT2 = "pointLights[2].constant";
-constexpr const char* POINTLIGHTCONSTANT3 = "pointLights[3].constant";
-constexpr const char* POINTLIGHTCONSTANT4 = "pointLights[4].constant";
-constexpr const char* POINTLIGHTCONSTANT5 = "pointLights[5].constant";
-constexpr const char* POINTLIGHTCONSTANT6 = "pointLights[6].constant";
-constexpr const char* POINTLIGHTCONSTANT7 = "pointLights[7].constant";
-constexpr const char* POINTLIGHTCONSTANT[8] = { POINTLIGHTCONSTANT0, POINTLIGHTCONSTANT1, POINTLIGHTCONSTANT2, POINTLIGHTCONSTANT3, POINTLIGHTCONSTANT4, POINTLIGHTCONSTANT5, POINTLIGHTCONSTANT6, POINTLIGHTCONSTANT7 };
-
-constexpr const char* POINTLIGHTLINEAR0 = "pointLights[0].linear";
-constexpr const char* POINTLIGHTLINEAR1 = "pointLights[1].linear";
-constexpr const char* POINTLIGHTLINEAR2 = "pointLights[2].linear";
-constexpr const char* POINTLIGHTLINEAR3 = "pointLights[3].linear";
-constexpr const char* POINTLIGHTLINEAR4 = "pointLights[4].linear";
-constexpr const char* POINTLIGHTLINEAR5 = "pointLights[5].linear";
-constexpr const char* POINTLIGHTLINEAR6 = "pointLights[6].linear";
-constexpr const char* POINTLIGHTLINEAR7 = "pointLights[7].linear";
-constexpr const char* POINTLIGHTLINEAR[8] = { POINTLIGHTLINEAR0, POINTLIGHTLINEAR1, POINTLIGHTLINEAR2, POINTLIGHTLINEAR3, POINTLIGHTLINEAR4, POINTLIGHTLINEAR5, POINTLIGHTLINEAR6, POINTLIGHTLINEAR7 };
-
-constexpr const char* POINTLIGHTQUADRATIC0 = "pointLights[0].quadratic";
-constexpr const char* POINTLIGHTQUADRATIC1 = "pointLights[1].quadratic";
-constexpr const char* POINTLIGHTQUADRATIC2 = "pointLights[2].quadratic";
-constexpr const char* POINTLIGHTQUADRATIC3 = "pointLights[3].quadratic";
-constexpr const char* POINTLIGHTQUADRATIC4 = "pointLights[4].quadratic";
-constexpr const char* POINTLIGHTQUADRATIC5 = "pointLights[5].quadratic";
-constexpr const char* POINTLIGHTQUADRATIC6 = "pointLights[6].quadratic";
-constexpr const char* POINTLIGHTQUADRATIC7 = "pointLights[7].quadratic";
-constexpr const char* POINTLIGHTQUADRATIC[8] = { POINTLIGHTQUADRATIC0, POINTLIGHTQUADRATIC1, POINTLIGHTQUADRATIC2, POINTLIGHTQUADRATIC3, POINTLIGHTQUADRATIC4, POINTLIGHTQUADRATIC5, POINTLIGHTQUADRATIC6, POINTLIGHTQUADRATIC7 };
-
-constexpr const char* POINTLIGHT0 = "PointLight[0]";
-constexpr const char* POINTLIGHT1 = "PointLight[1]";
-constexpr const char* POINTLIGHT2 = "PointLight[2]";
-constexpr const char* POINTLIGHT3 = "PointLight[3]";
-constexpr const char* POINTLIGHT4 = "PointLight[4]";
-constexpr const char* POINTLIGHT5 = "PointLight[5]";
-constexpr const char* POINTLIGHT6 = "PointLight[6]";
-constexpr const char* POINTLIGHT7 = "PointLight[7]";
-constexpr const char* POINTLIGHTS[8] = { POINTLIGHT0, POINTLIGHT1, POINTLIGHT2, POINTLIGHT3, POINTLIGHT4, POINTLIGHT5, POINTLIGHT6, POINTLIGHT7 };
