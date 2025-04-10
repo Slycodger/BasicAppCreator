@@ -4,7 +4,7 @@
 #include <stdexcept>
 #include "Unique.h"
 
-struct scriptBase {
+struct ScriptBase {
   virtual void start() {}
   virtual void update() {}
   virtual void end() {}

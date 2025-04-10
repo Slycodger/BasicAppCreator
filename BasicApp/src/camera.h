@@ -21,7 +21,7 @@ public:
 
     void addUniqueTypeScript(UniqueType * obj, void* script, char c);
     for (auto& scrV : scripts) {
-      void* newScr = ((scriptBase*)scrV)->getNew();
+      void* newScr = ((ScriptBase*)scrV)->getNew();
       addUniqueTypeScript(ret, newScr, 'c');
     }
 
@@ -185,8 +185,6 @@ public:
     ret.x = cos(yaw);
     ret.y = 0;
     ret.z = sin(yaw);
-
-    std::cout << transform.rotation.y << "\n";
 
     return ret;
   }

@@ -142,6 +142,9 @@
     <ClCompile Include="src\cameraTypeFunctions.cpp">
       <Filter>appFiles\TypeFunctions</Filter>
     </ClCompile>
+    <ClCompile Include="src\scriptStuffFunctions.cpp">
+      <Filter>appFiles\TypeFunctions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="sfml-system-d-2.dll">

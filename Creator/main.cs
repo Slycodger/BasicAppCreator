@@ -39,8 +39,12 @@
     cube1.srcMaterial.metallic = 1;
     cube1.srcMaterial.roughness = 0;
 
-    Console.WriteLine(cube2.mesh.triCount);
-    Console.WriteLine($"Vertex 7 on {nameof(cube2)} has uv {cube2.mesh.vertices[7].uv}");
+
+    TextBox box = new TextBox(TextBox.basicApp_createTextBox());
+    box.Text = "Hello, World";
+    box.UpdateText();
+
+
 
 
     basicApp_setMouseHide(true);
@@ -51,7 +55,6 @@
     Mesh.basicApp_loadMesh(mData.meshData, "myTriangle");
 
     Texture albedo = new Texture(Texture.basicApp_loadTexture("cube_diff.png", (int)TextureType.ALBEDO, false, false, false));
-    Console.WriteLine(albedo.width);
     cube2.srcMaterial.albedoTexture = albedo;
     cube2.srcMaterial.roughness = 1;
     cube2.srcMaterial.metallic = 0;
@@ -66,9 +69,9 @@
       if (basicApp_keyPressed(KEY_ESCAPE))
         basicApp_closeApp();
 
-      light.position = light.position - new Vec3(0, 0, basicApp_deltaTime());
 
-      //sLight.direction = cam.forwardDirection;
+      if (basicApp_keyHeld(KEY_KP_1))
+        light.position = light.position - new Vec3(0, 0, 3 * basicApp_deltaTime());
 
 
       if (basicApp_keyPressed(KEY_Q))
@@ -87,12 +90,32 @@
       if (basicApp_keyPressed(KEY_R))
         mData.Update();
 
+      if (basicApp_keyPressed(KEY_I))
+        box.FontSize += 0.1f;
 
-      if (basicApp_scrollDown())
+      if (basicApp_keyPressed(KEY_U))
+        box.FontSize -= 0.1f;
+
+      if (basicApp_keyPressed(KEY_N))
+        box.LineSize -= 0.1f;
+      if (basicApp_keyPressed(KEY_M))
+        box.LineSize += 0.1f;
+
+      
+
+
+      if (basicApp_scrollDown()) {
+        box.scale = new Vec3(box.scale.x + 0.1f, box.scale.y, box.scale.z);
         cube.rotation = new Vec3(cube.rotation.x + 1.0f, 0, 0);
+      }
 
-      if (basicApp_scrollUp())
+      if (basicApp_scrollUp()) {
+        box.scale = new Vec3(box.scale.x - 0.1f, box.scale.y, box.scale.z);
         cube.rotation = new Vec3(cube.rotation.x - 1.0f, 0, 0);
+      }
+
+      if (basicApp_keyPressed(KEY_O))
+        box.UpdateText();
 
       cam.UpdatePerspectiveView();
 
@@ -112,7 +135,7 @@
           cube2.parent = cube;
         }
 
-      if (basicApp_keyHeld(KEY_N))
+      if (basicApp_keyHeld(KEY_V))
         if (cube.children.length > 1) {
           UniqueType child = new(cube.children[1]);
           child.relativePosition = new Vec3(child.relativePosition.x + 0.5f * basicApp_deltaTime(), 0, child.relativePosition.z);

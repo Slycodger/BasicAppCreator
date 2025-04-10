@@ -77,7 +77,7 @@ public:
   }
   void* getScriptType(std::string scriptType) {
     for (auto scrV : scripts) {
-      scriptBase* scr = (scriptBase*)scrV;
+      ScriptBase* scr = (ScriptBase*)scrV;
       if (scr->getName() == scriptType)
         return (void*)scrV;
     }

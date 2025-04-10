@@ -7,7 +7,7 @@
 #include "transform.h"
 #include "UniqueTypes.h"
 
-struct TextBox : public scriptBase {
+struct TextBox : public ScriptBase {
   constexpr static const char* name = "TextBox";
   std::vector<void*> startObjs;
   Object* thisObj = nullptr;
@@ -84,7 +84,7 @@ private:
 };
 
 
-struct ButtonMain : public scriptBase {
+struct ButtonMain : public ScriptBase {
   constexpr static const char* name = "ButtonMain";
   std::vector<void*> startObjs;
   Object* thisObj = nullptr;
@@ -176,7 +176,7 @@ struct ButtonMain : public scriptBase {
 };
 
 
-struct Button : public scriptBase {
+struct Button : public ScriptBase {
   constexpr static const char* name = "Button";
   Object* thisObj = nullptr;
   std::vector<void*> startObjs;
@@ -268,7 +268,7 @@ struct Button : public scriptBase {
 };
 
 
-struct VoidButton : public scriptBase {
+struct VoidButton : public ScriptBase {
   constexpr static const char* name = "VoidButton";
   std::vector<void*> startObjs;
   Object* thisObj = nullptr;

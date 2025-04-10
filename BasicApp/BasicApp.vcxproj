@@ -40,7 +40,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -172,6 +172,7 @@
     <ClCompile Include="src\objects.cpp" />
     <ClCompile Include="src\objectTypeFunctions.cpp" />
     <ClCompile Include="src\ptrArrayTypeFunctions.cpp" />
+    <ClCompile Include="src\scriptStuffFunctions.cpp" />
     <ClCompile Include="src\textureTypeFunctions.cpp" />
     <ClCompile Include="src\uniqueTypeFunctions.cpp" />
     <ClCompile Include="src\uniqueTypes.cpp" />

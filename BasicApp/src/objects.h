@@ -84,7 +84,7 @@ public:
 
     void addUniqueTypeScript(UniqueType* obj, void* script, char c);
     for (auto& scrV : scripts) {
-      void* newScr = ((scriptBase*)scrV)->getNew();
+      void* newScr = ((ScriptBase*)scrV)->getNew();
       addUniqueTypeScript(ret, newScr, 'c');
     }
 

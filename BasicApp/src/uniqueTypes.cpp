@@ -262,9 +262,9 @@ void deleteUniqueType(UniqueType* tType, int) {
 //Starts an objects scripts
 void startUniqueType(UniqueType* obj) {
   for (auto scr : obj->scripts) {
-    if (!((scriptBase*)scr)->started) {
-      createScriptUniqueTypes(((scriptBase*)scr)->objsNeeded());
-      ((scriptBase*)scr)->start();
+    if (!((ScriptBase*)scr)->started) {
+      createScriptUniqueTypes(((ScriptBase*)scr)->objsNeeded());
+      ((ScriptBase*)scr)->start();
     }
   }
   for (auto child : obj->children) {
@@ -285,7 +285,7 @@ void createScriptUniqueTypes(std::pair<std::vector<std::pair<Unique::Types, std:
 //Adds an object script
 void addUniqueTypeScript(UniqueType* tType, void* script) {
   tType->scripts.push_back(script);
-  scriptBase* realScr = (scriptBase*)script;
+  ScriptBase* realScr = (ScriptBase*)script;
   createScriptUniqueTypes(realScr->objsNeeded());
   realScr->vThisObj = tType;
   realScr->start();
@@ -294,13 +294,13 @@ void addUniqueTypeScript(UniqueType* tType, void* script) {
 //Add an object script without starting it
 void addUniqueTypeScript(UniqueType* tType, void* script, char c) {
   tType->scripts.push_back(script);
-  scriptBase* realScr = (scriptBase*)script;
+  ScriptBase* realScr = (ScriptBase*)script;
   realScr->vThisObj = tType;
 }
 
 //Remove an object script at a specific index
 void removeUniqueTypeScript(UniqueType* tType, unsigned int index) {
-  ((scriptBase*)(tType->scripts[index]))->end();
+  ((ScriptBase*)(tType->scripts[index]))->end();
   delete(tType->scripts[index]);
   tType->scripts.erase(tType->scripts.begin() + index);
 }
@@ -308,7 +308,7 @@ void removeUniqueTypeScript(UniqueType* tType, unsigned int index) {
 //Get the index of a script on an object with a certain name
 unsigned int getUniqueTypeScriptIndex(UniqueType* tType, std::string name) {
   for (uint i = 0; i < tType->scripts.size(); i++) {
-    scriptBase* realScr = (scriptBase*)tType->scripts[i];
+    ScriptBase* realScr = (ScriptBase*)tType->scripts[i];
     if (realScr->getName() == name) {
       return i;
     }
@@ -319,7 +319,7 @@ unsigned int getUniqueTypeScriptIndex(UniqueType* tType, std::string name) {
 //Updates an objects scripts
 void updateUniqueTypeScripts(UniqueType* tType) {
   for (uint i = 0; i < tType->scripts.size(); i++) {
-    scriptBase* realScr = (scriptBase*)tType->scripts[i];
+    ScriptBase* realScr = (ScriptBase*)tType->scripts[i];
     realScr->update();
   }
 }
@@ -327,7 +327,7 @@ void updateUniqueTypeScripts(UniqueType* tType) {
 //Deletes an objects scripts
 void clearUniqueTypeScripts(UniqueType* tType) {
   for (uint i = 0; i < tType->scripts.size(); i++) {
-    ((scriptBase*)tType->scripts[i])->end();
+    ((ScriptBase*)tType->scripts[i])->end();
     delete(tType->scripts[i]);
   }
   tType->scripts.clear();
